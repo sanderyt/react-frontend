@@ -1,9 +1,38 @@
 .textfield {
-  display: flex;
-  flex-direction: column;
-  margin: 20px;
+  position: relative;
 
-  input {
-    height: 25px;
+  &__input {
+    width: 280px;
+    padding: 10px 12px;
+    border: none;
+    background: transparent;
+    outline: none;
+    border: 1px solid #aaa;
+    margin-bottom: 24px;
+
+    &:focus + label,
+    &:not(:focus):valid + label {
+      color: black;
+      top: -10px;
+    }
+  }
+
+  label {
+    position: absolute;
+    top: 12px;
+    font-size: 14px;
+    left: 10px;
+    color: #aaa;
+    background-color: white;
+    pointer-events: none;
+    transition: 0.5s;
+  }
+
+  span {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    font-size: 10px;
+    color: red;
   }
 }

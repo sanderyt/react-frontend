@@ -38,7 +38,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} noValidate={true}>
       <Textfield
         label="name"
         type="text"

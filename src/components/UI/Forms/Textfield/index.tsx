@@ -12,9 +12,17 @@ type TextfieldProps = {
 const Textfield: FC<TextfieldProps> = ({ label, type, register, error }) => {
   return (
     <div className="textfield">
-      <span>{label}</span>
-      <input name={label} type={type} ref={register} />
-      {error && <span>{error.message}</span>}
+      <input
+        name={label}
+        type={type}
+        ref={register}
+        className="textfield__input"
+        required={true}
+      />
+      <label htmlFor={label} className="textfield__label">
+        {label}
+      </label>
+      {error && <span className="textfield__error">{error.message}</span>}
     </div>
   );
 };
