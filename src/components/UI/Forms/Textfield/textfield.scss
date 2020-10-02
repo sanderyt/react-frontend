@@ -9,10 +9,22 @@
     outline: none;
     border: 1px solid #aaa;
     margin-bottom: 24px;
+    transition: 250ms;
+    border-radius: 4px;
+
+    &--error {
+      border: 1px solid red;
+    }
+
+    &:focus {
+      background-color: #f7f7f7;
+      border: 1px solid black;
+    }
 
     &:focus + label,
     &:not(:focus):valid + label {
       color: black;
+      background-color: transparant;
       top: -10px;
     }
   }
