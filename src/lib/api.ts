@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 const baseUrl = "https://express-server-sander.herokuapp.com";
 
@@ -9,7 +9,7 @@ const config = {
 };
 
 // Register user
-export const registerUser = async (userData: Object) => {
+export const registerUser = async (userData: Object): Promise<any> => {
   try {
     const response = await axios.post(
       `${baseUrl}/api/user/register`,
@@ -18,7 +18,7 @@ export const registerUser = async (userData: Object) => {
     );
     return response;
   } catch (error) {
-    console.error(`Register request failed: ${error}`);
+    console.error(`Register request failed: ${error.response.data}`);
   }
 };
 

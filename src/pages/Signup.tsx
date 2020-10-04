@@ -7,7 +7,6 @@ const Signup = () => {
     <Container>
       <Row>
         <Col>
-          <h2>Register now!</h2>
           <RegisterForm />
         </Col>
       </Row>

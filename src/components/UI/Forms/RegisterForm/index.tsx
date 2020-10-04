@@ -6,6 +6,7 @@ import * as yup from "yup";
 
 import { Alert, Button } from "react-bootstrap";
 import Textfield from "../Textfield";
+import Flex from "../../../Flex";
 
 const schema = yup.object().shape({
   name: yup.string().required(),
@@ -22,52 +23,79 @@ const schema = yup.object().shape({
 
 const RegisterForm = () => {
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(schema)
   });
 
-  const onSubmit = (data: any) => {
-    const response = registerUser(data);
-    if (response) {
-      successHandler();
-    }
+  const onSubmit = ({
+    name,
+    email,
+    password
+  }: {
+    name: string;
+    email: string;
+    password: string;
+  }): void => {
+    registerUser({
+      name: name,
+      email: email,
+      password: password
+    }).then(response => {
+      if (response) {
+        successHandler();
+      } else {
+        errorHandler();
+      }
+    });
   };
 
-  const successHandler = () => {
+  const successHandler = (): void => {
+    setError(false);
     setSuccess(true);
   };
 
+  const errorHandler = (): void => {
+    setError(true);
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate={true}>
-      <Textfield
-        label="name"
-        type="text"
-        register={register}
-        error={errors.name}
-      />
-      <Textfield
-        label="email"
-        type="text"
-        register={register}
-        error={errors.email}
-      />
-      <Textfield
-        label="password"
-        type="password"
-        register={register}
-        error={errors.password}
-      />
-      <Textfield
-        label="confirmPassword"
-        type="password"
-        register={register}
-        error={errors.confirmPassword}
-      />
-      <Button type="submit">Register</Button>
-      <Alert variant="success" show={success}>
-        You have successfully signed up!
-      </Alert>
-    </form>
+    <Flex container flexDirection="column" alignItems="center">
+      <h3>Register now</h3>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate={true}>
+        <Textfield
+          label="name"
+          type="text"
+          register={register}
+          error={errors.name}
+        />
+        <Textfield
+          label="email"
+          type="text"
+          register={register}
+          error={errors.email}
+        />
+        <Textfield
+          label="password"
+          type="password"
+          register={register}
+          error={errors.password}
+        />
+        <Textfield
+          label="confirmPassword"
+          type="password"
+          register={register}
+          error={errors.confirmPassword}
+        />
+        <Button type="submit">Register</Button>
+        <Alert variant="success" show={success}>
+          You have successfully signed up!
+        </Alert>
+        <Alert variant="danger" show={error}>
+          Something went wrong
+        </Alert>
+      </form>
+    </Flex>
   );
 };
 
