@@ -2,8 +2,9 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../context/auth";
 
+import { Button } from "react-bootstrap";
+
 import "./header.scss";
-import Flex from "../../Flex";
 
 const Header = () => {
   const { user } = useContext(AuthContext);
@@ -15,14 +16,16 @@ const Header = () => {
           <li>Home</li>
         </Link>
         {user ? (
-          <span>User is logged in</span>
+          <Button variant="danger">Logout</Button>
         ) : (
           <>
             <Link to="/signup">
               <li>Signup</li>
             </Link>
             <Link to="/login">
-              <li>Login</li>
+              <li>
+                <Button variant="primary">Login</Button>
+              </li>
             </Link>
           </>
         )}
