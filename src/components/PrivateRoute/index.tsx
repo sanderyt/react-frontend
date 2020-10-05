@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/auth";
 const PrivateRoute: FC<{
   children: ReactNode;
   path: string;
-  exact: boolean;
+  exact?: boolean;
 }> = props => {
   const { user } = useContext(AuthContext);
 

@@ -10,7 +10,7 @@ const PublicRoute: FC<{
   const { user } = useContext(AuthContext);
 
   return user ? (
-    <Redirect to="/dashboard" />
+    <Redirect to="/dashboard/home" />
   ) : (
     <Route path={props.path} exact={props.exact}>
       {props.children}

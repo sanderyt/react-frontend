@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
@@ -9,7 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
 
-function App() {
+const App = () => {
   return (
     <Router>
       <Layout>
@@ -23,13 +23,13 @@ function App() {
           <PublicRoute exact path="/login">
             <Login />
           </PublicRoute>
-          <PrivateRoute path="/dashboard" exact>
+          <PrivateRoute path="/dashboard">
             <Dashboard />
           </PrivateRoute>
         </Switch>
       </Layout>
     </Router>
   );
-}
+};
 
 export default App;
