@@ -1,4 +1,5 @@
 import React, { createContext, useReducer, FC } from "react";
+import jwtDecode from "jwt-decode";
 
 interface IAuth {
   user: string | null;
@@ -6,9 +7,29 @@ interface IAuth {
   logout: () => void;
 }
 
-const initialState = {
+interface MyToken {
+  name: string;
+  exp: number;
+}
+
+interface InitialState {
+  user: MyToken | null;
+}
+
+const initialState: InitialState = {
   user: null
 };
+
+const storedToken = localStorage.getItem("jwtToken");
+
+if (storedToken) {
+  const decodedToken = jwtDecode<MyToken>(storedToken);
+  if (decodedToken.exp * 1000 < Date.now()) {
+    localStorage.removeItem("jwtToken");
+  } else {
+    initialState.user = decodedToken;
+  }
+}
 
 const AuthContext = createContext<IAuth>({
   user: null,
