@@ -5,21 +5,27 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Layout from "./components/UI/Layout";
+import Dashboard from "./pages/Dashboard";
+import PrivateRoute from "./components/PrivateRoute";
+import PublicRoute from "./components/PublicRoute";
 
 function App() {
   return (
     <Router>
       <Layout>
         <Switch>
-          <Route path="/signup">
-            <Signup />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/">
+          <PublicRoute exact path="/">
             <Home />
-          </Route>
+          </PublicRoute>
+          <PublicRoute exact path="/signup">
+            <Signup />
+          </PublicRoute>
+          <PublicRoute exact path="/login">
+            <Login />
+          </PublicRoute>
+          <PrivateRoute path="/dashboard" exact>
+            <Dashboard />
+          </PrivateRoute>
         </Switch>
       </Layout>
     </Router>

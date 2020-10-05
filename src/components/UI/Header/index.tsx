@@ -7,7 +7,7 @@ import { Button } from "react-bootstrap";
 import "./header.scss";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   return (
     <div className="header">
       <h3>Sander's portfolio CMS</h3>
@@ -16,7 +16,9 @@ const Header = () => {
           <li>Home</li>
         </Link>
         {user ? (
-          <Button variant="danger">Logout</Button>
+          <Button variant="danger" onClick={logout}>
+            Logout
+          </Button>
         ) : (
           <>
             <Link to="/signup">
