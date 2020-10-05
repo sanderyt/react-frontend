@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { useForm } from "react-hook-form";
 import { loginUser } from "../../../../lib/api";
+import { AuthContext } from "../../../../context/auth";
 import { yupResolver } from "@hookform/resolvers";
 import * as yup from "yup";
 
@@ -18,13 +19,14 @@ const schema = yup.object().shape({
 });
 
 const LoginForm = () => {
+  const context = useContext(AuthContext);
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema)
   });
 
   const onSubmit = (data: any) => {
     loginUser(data).then(response => {
-      //set the token here in context response.data
+      if (response) context.login(response.data);
     });
   };
 

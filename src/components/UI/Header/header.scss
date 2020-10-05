@@ -5,6 +5,9 @@
   top: 0;
   position: fixed;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   ul {
     list-style: none;
