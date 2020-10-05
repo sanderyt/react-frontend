@@ -1,10 +1,17 @@
-import React, { useState } from "react";
-import { loginUser } from "../lib/api";
-
-import Textfield from "../components/UI/Forms/Textfield";
+import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import LoginForm from "../components/UI/Forms/LoginForm";
 
 const Login = () => {
-  return <div></div>;
+  return (
+    <Container>
+      <Row>
+        <Col>
+          <LoginForm />
+        </Col>
+      </Row>
+    </Container>
+  );
 };
 
 export default Login;
