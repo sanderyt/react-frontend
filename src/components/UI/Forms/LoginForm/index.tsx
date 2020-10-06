@@ -55,9 +55,7 @@ const LoginForm = () => {
           register={register}
           error={errors.password}
         />
-        <Button primary isSubmit isLoading={isLoading}>
-          Login
-        </Button>
+        <Button primary isSubmit isLoading={isLoading} submitValue="Login" />
       </form>
     </Flex>
   );

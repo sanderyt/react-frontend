@@ -4,7 +4,7 @@ import "./button.scss";
 import Spinner from "../Spinner";
 
 type ButtonProps = {
-  children: ReactNode;
+  children?: ReactNode;
   clickHandler?: ((event: MouseEvent<HTMLButtonElement>) => void) | undefined;
   className?: string;
   primary?: boolean;
@@ -12,6 +12,7 @@ type ButtonProps = {
   rounded?: boolean;
   isLoading?: boolean;
   isSubmit?: boolean;
+  submitValue?: string;
 };
 
 const Button: FC<ButtonProps> = ({
@@ -22,7 +23,8 @@ const Button: FC<ButtonProps> = ({
   secondary,
   rounded,
   isLoading,
-  isSubmit
+  isSubmit,
+  submitValue
 }) => {
   const primaryClass = primary && "btn--primary";
   const secondaryClass = secondary && "btn--secondary";
@@ -36,7 +38,7 @@ const Button: FC<ButtonProps> = ({
         <input
           type="submit"
           className={classes}
-          value={isLoading ? "Loading..." : "Save"}
+          value={isLoading ? "Loading..." : submitValue}
         />
       ) : (
         <button className={classes} onClick={clickHandler} disabled={isLoading}>

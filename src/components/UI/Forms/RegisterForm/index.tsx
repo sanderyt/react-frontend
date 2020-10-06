@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers";
 import * as yup from "yup";
 
-import { Alert, Button } from "react-bootstrap";
+import Button from "../../../Button";
 import Textfield from "../Textfield";
 import Flex from "../../../Flex";
 
@@ -87,13 +87,7 @@ const RegisterForm = () => {
           register={register}
           error={errors.confirmPassword}
         />
-        <Button type="submit">Register</Button>
-        <Alert variant="success" show={success}>
-          You have successfully signed up!
-        </Alert>
-        <Alert variant="danger" show={error}>
-          Something went wrong
-        </Alert>
+        <Button isSubmit secondary submitValue="Register" />
       </form>
     </Flex>
   );

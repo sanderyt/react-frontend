@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 
 import Flex from "../../components/Flex";
 import Textfield from "../../components/UI/Forms/Textfield";
-import { Button } from "react-bootstrap";
+import Button from "../../components/Button";
 
 type ProjectInput = {
   example: string;
@@ -37,7 +37,7 @@ const AddProject = () => {
         error={errors.tools}
       />
       <span>Images uploaden</span>
-      <Button variant="primary">Post project</Button>
+      <Button isSubmit primary submitValue="Post new project" />
     </Flex>
   );
 };
