@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { loginUser } from "../../../../lib/api";
@@ -8,7 +8,7 @@ import * as yup from "yup";
 
 import Textfield from "../Textfield";
 import Flex from "../../../Flex";
-import { Button } from "react-bootstrap";
+import Button from "../../../Button";
 
 const schema = yup.object().shape({
   email: yup
@@ -19,15 +19,24 @@ const schema = yup.object().shape({
 });
 
 const LoginForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const context = useContext(AuthContext);
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema)
   });
 
   const onSubmit = (data: any) => {
+    setIsLoading(true);
     loginUser(data).then(response => {
-      if (response) context.login(response.data);
+      if (response) {
+        succesHandler(response);
+      }
     });
+  };
+
+  const succesHandler = (response: any) => {
+    setIsLoading(false);
+    context.login(response.data);
   };
 
   return (
@@ -46,7 +55,9 @@ const LoginForm = () => {
           register={register}
           error={errors.password}
         />
-        <Button type="submit">Login</Button>
+        <Button primary isSubmit isLoading={isLoading}>
+          Login
+        </Button>
       </form>
     </Flex>
   );

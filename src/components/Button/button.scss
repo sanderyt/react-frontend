@@ -1,0 +1,56 @@
+.btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 250ms;
+  line-height: normal;
+
+  &--primary {
+    background-color: tomato;
+    color: white;
+    border-radius: 2px;
+    padding: 8px 16px;
+    min-width: 93px;
+    font-size: 16px;
+    font-weight: 500;
+
+    &:hover {
+      background-color: lightcoral;
+      color: white;
+    }
+  }
+
+  &--secondary {
+    background-color: seagreen;
+    padding: 8px 16px;
+    color: white;
+    border-radius: 2px;
+    font-size: 16px;
+
+    &:hover {
+      background-color: lightseagreen;
+    }
+  }
+
+  &--rounded {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: white;
+    border: solid 0.5px #ccc;
+    padding: 0;
+
+    &:hover {
+      background-color: #ccc;
+    }
+  }
+
+  &--loading {
+    background-color: #ccc;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: #ccc;
+    }
+  }
+}

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../context/auth";
 
-import { Button } from "react-bootstrap";
+import Button from "../../Button";
 
 import "./header.scss";
 
@@ -10,13 +10,12 @@ const Header = () => {
   const { user, logout } = useContext(AuthContext);
   return (
     <div className="header">
-      <h3>Sander's portfolio CMS</h3>
       <ul>
         <Link to="/">
           <li>Home</li>
         </Link>
         {user ? (
-          <Button variant="danger" onClick={logout}>
+          <Button secondary clickHandler={logout}>
             Logout
           </Button>
         ) : (
@@ -26,7 +25,7 @@ const Header = () => {
             </Link>
             <Link to="/login">
               <li>
-                <Button variant="primary">Login</Button>
+                <Button primary>Login</Button>
               </li>
             </Link>
           </>
