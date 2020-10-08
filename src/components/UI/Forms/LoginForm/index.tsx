@@ -9,6 +9,7 @@ import * as yup from "yup";
 import Textfield from "../Textfield";
 import Flex from "../../../Flex";
 import Button from "../../../Button";
+import { ToasterContext } from "../../../../context/toaster";
 
 const schema = yup.object().shape({
   email: yup
@@ -20,23 +21,32 @@ const schema = yup.object().shape({
 
 const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const context = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
+  const { toggleToaster } = useContext(ToasterContext);
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema)
   });
 
   const onSubmit = (data: any) => {
     setIsLoading(true);
-    loginUser(data).then(response => {
-      if (response) {
-        succesHandler(response);
+    loginUser(
+      data,
+      (response: Object) => succesHandler(response),
+      (error: Object) => {
+        errorHandler(error);
       }
-    });
+    );
   };
 
   const succesHandler = (response: any) => {
     setIsLoading(false);
-    context.login(response.data);
+    login(response.data);
+    toggleToaster!("Successfully logged in", "success");
+  };
+
+  const errorHandler = (error: any) => {
+    setIsLoading(false);
+    toggleToaster!(error.response.data, "error");
   };
 
   return (

@@ -1,0 +1,48 @@
+@import "../../../styles/variables";
+
+.toaster {
+  width: 350px;
+  height: 40px;
+  transform: translateX(120%);
+  background-color: white;
+  position: fixed;
+  right: 0;
+  opacity: 1;
+  font-size: 16px;
+  color: black;
+  margin: 0 20px;
+  top: 125px;
+  font-weight: bold;
+  box-shadow: 0 0 10px #aaa;
+  z-index: 5;
+  transition: 750ms ease;
+  border-top: 5px solid tomato;
+
+  &--success {
+    background-color: #2ecc71;
+    border-top: 5px solid #27ae60;
+    color: white;
+  }
+
+  &--error {
+    background-color: #e74c3c;
+    border-top: 5px solid #c0392b;
+    color: white;
+  }
+
+  &__close {
+    position: absolute;
+    right: 10px;
+    top: 4px;
+    cursor: pointer;
+  }
+
+  &__content {
+    width: 100%;
+  }
+
+  &.actived {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}

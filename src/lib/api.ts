@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-const baseUrl = "https://express-server-sander.herokuapp.com";
+const baseUrl = "https://express-server-sander.herokuapp.com/api";
 
 const config = {
   headers: {
@@ -12,7 +12,7 @@ const config = {
 export const registerUser = async (userData: Object): Promise<any> => {
   try {
     const response = await axios.post(
-      `${baseUrl}/api/user/register`,
+      `${baseUrl}/user/register`,
       userData,
       config
     );
@@ -23,15 +23,19 @@ export const registerUser = async (userData: Object): Promise<any> => {
 };
 
 //Login user
-export const loginUser = async (userData: Object) => {
+export const loginUser = async (
+  userData: Object,
+  callback: Function,
+  errorCallback: Function
+) => {
   try {
     const response = await axios.post(
-      `${baseUrl}/api/user/login`,
+      `${baseUrl}/user/login`,
       userData,
       config
     );
-    return response;
+    callback(response);
   } catch (error) {
-    console.error(`Login request failed: ${error}`);
+    errorCallback(error);
   }
 };
