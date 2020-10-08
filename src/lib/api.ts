@@ -1,21 +1,14 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 
-const baseUrl = "https://express-server-sander.herokuapp.com/api";
-
-const config = {
-  headers: {
-    "Content-type": "application/json"
-  }
-};
+//Routes
+const API_URL = "https://express-server-sander.herokuapp.com/api";
+const REGISTER_PATH = "/user/register";
+const LOGIN_PATH = "/user/login";
 
 // Register user
 export const registerUser = async (userData: Object): Promise<any> => {
   try {
-    const response = await axios.post(
-      `${baseUrl}/user/register`,
-      userData,
-      config
-    );
+    const response = await axios.post(`${API_URL}${REGISTER_PATH}`, userData);
     return response;
   } catch (error) {
     console.error(`Register request failed: ${error.response.data}`);
@@ -29,11 +22,7 @@ export const loginUser = async (
   errorCallback: Function
 ) => {
   try {
-    const response = await axios.post(
-      `${baseUrl}/user/login`,
-      userData,
-      config
-    );
+    const response = await axios.post(`${API_URL}${LOGIN_PATH}`, userData);
     callback(response);
   } catch (error) {
     errorCallback(error);

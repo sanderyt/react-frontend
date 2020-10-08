@@ -9,7 +9,6 @@
   right: 0;
   opacity: 1;
   font-size: 16px;
-  color: black;
   margin: 0 20px;
   top: 125px;
   font-weight: bold;
@@ -35,6 +34,12 @@
     right: 10px;
     top: 4px;
     cursor: pointer;
+    transition: 250ms;
+    color: white;
+
+    &:hover {
+      color: #bbb;
+    }
   }
 
   &__content {
