@@ -16,6 +16,8 @@ const ProjectForm = () => {
   const { register, handleSubmit, watch, errors } = useForm();
   const onSubmit = (data: ProjectInput) => console.log(data);
 
+  const watchFiles = watch("images");
+
   return (
     <Flex container flexDirection="column" alignItems="center">
       <h1>Add a new project</h1>
@@ -43,7 +45,7 @@ const ProjectForm = () => {
           register={register}
           error={errors.url}
         />
-        <Fileinput name="images" register={register} />
+        <Fileinput name="images" register={register} files={watchFiles} />
         <Button isSubmit primary submitValue="Post new project" />
       </form>
     </Flex>
