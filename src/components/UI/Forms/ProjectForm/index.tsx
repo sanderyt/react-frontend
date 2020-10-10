@@ -1,5 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { postProject } from "../../../../lib/api";
+import { Project } from "../../../../types/types";
 
 import Textfield from "../Textfield";
 import Button from "../../../Button";
@@ -7,14 +9,29 @@ import Textarea from "../Textarea";
 import Flex from "../../../Flex";
 import Fileinput from "../Fileinput";
 
-type ProjectInput = {
-  example: string;
-  exampleRequired: string;
-};
-
 const ProjectForm = () => {
   const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = (data: ProjectInput) => console.log(data);
+  const onSubmit = (data: Project) => {
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("description", data.description);
+    formData.append("tools", data.tools);
+    formData.append("url", data.url);
+
+    Array.from(data.images).map(image => {
+      formData.append("images", image);
+    });
+
+    postProject(
+      formData,
+      (response: any) => {
+        console.log("response", response);
+      },
+      (error: any) => {
+        console.error(error, "error");
+      }
+    );
+  };
 
   const watchFiles = watch("images");
 
