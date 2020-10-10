@@ -1,7 +1,7 @@
 import React, { FC, DetailedHTMLProps } from "react";
-
-import "./textfield.scss";
 import { capitalize } from "../../../../lib/util";
+
+import "./textarea.scss";
 
 type RefReturn =
   | string
@@ -10,38 +10,35 @@ type RefReturn =
   | null
   | undefined;
 
-type TextfieldProps = DetailedHTMLProps<
+type TextareaProps = DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
 > & {
   label: string;
-  type: string;
-  error: Error;
   register: () => RefReturn;
+  error: Error;
 };
 
-const Textfield: FC<TextfieldProps> = ({ label, type, register, error }) => {
+const Textarea: FC<TextareaProps> = ({ label, error, register }) => {
   return (
-    <div className="textfield">
-      <input
+    <div className="textarea">
+      <textarea
         name={label}
-        type={type}
         ref={register}
         className={
-          error
-            ? "textfield__input textfield__input--error"
-            : "textfield__input"
+          error ? "textarea__input textarea__input--error" : "textarea__input"
         }
         required={true}
+        rows={10}
       />
-      <label htmlFor={label} className="textfield__label">
+      <label htmlFor={label} className="textarea__label">
         {capitalize(label)}
       </label>
       {error && (
-        <span className="textfield__error">{capitalize(error.message)}</span>
+        <span className="textarea__error">{capitalize(error.message)}</span>
       )}
     </div>
   );
 };
 
-export default Textfield;
+export default Textarea;

@@ -1,0 +1,51 @@
+.textarea {
+  position: relative;
+
+  &__input {
+    width: 280px;
+    padding: 10px 12px;
+    border: none;
+    background: transparent;
+    outline: none;
+    border: 1px solid #aaa;
+    margin-bottom: 24px;
+    transition: 250ms;
+    border-radius: 4px;
+    resize: none;
+
+    &--error {
+      border: 1px solid red;
+    }
+
+    &:focus {
+      background-color: #f7f7f7;
+      border: 1px solid black;
+    }
+
+    &:focus + label,
+    &:not(:focus):valid + label {
+      color: black;
+      background-color: transparant;
+      top: -10px;
+    }
+  }
+
+  label {
+    position: absolute;
+    top: 12px;
+    font-size: 14px;
+    left: 10px;
+    color: #aaa;
+    background-color: white;
+    pointer-events: none;
+    transition: 0.5s;
+  }
+
+  span {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    font-size: 10px;
+    color: red;
+  }
+}
